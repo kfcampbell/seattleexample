@@ -1,0 +1,36 @@
+# Version: 8.10.3.2 (8b265d6)
+# [first argument, ignore] # /Users/keeganc/Projects/monotouch-samples/StoryboardTable/StoryboardTable/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.10.3.2/bin/mtouch \
+	--cache \
+	/Users/keeganc/Projects/monotouch-samples/StoryboardTable/StoryboardTable/obj/iPhone/Debug/mtouch-cache \
+	--dev \
+	/Users/keeganc/Projects/monotouch-samples/StoryboardTable/StoryboardTable/bin/iPhone/Debug/StoryboardTable.app \
+	--executable \
+	StoryboardTable \
+	--debug \
+	--linksdkonly \
+	--sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--sdk \
+	8.4 \
+	--targetver \
+	7.0 \
+	--abi=armv7 \
+	--symbollist \
+	/Users/keeganc/Projects/monotouch-samples/StoryboardTable/StoryboardTable/obj/iPhone/Debug/mtouch-symbols.list \
+	--dsym=no \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
+	-r \
+	/Users/keeganc/Projects/monotouch-samples/StoryboardTable/packages/Newtonsoft.Json.7.0.1/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	-r \
+	/Users/keeganc/Projects/monotouch-samples/StoryboardTable/packages/Newtonsoft.Json.7.0.1/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll \
+	/Users/keeganc/Projects/monotouch-samples/StoryboardTable/StoryboardTable/bin/iPhone/Debug//StoryboardTable.exe \
