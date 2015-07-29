@@ -18,6 +18,14 @@ namespace StoryboardTable {
 		public JToken batter { get; set; }
 		public string hometeam { get; set; }
 		public string awayteam { get; set; }
+		public string homewins { get; set; }
+		public string homelosses { get; set; }
+		public string awaywins { get; set; }
+		public string awaylosses { get; set; }
+		public string starttime { get; set; }
+		public string timezone { get; set; }
+		public string status { get; set; }
+		public JToken score { get; set; }
 	}
 }
 

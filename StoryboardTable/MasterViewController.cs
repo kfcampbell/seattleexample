@@ -58,10 +58,8 @@ namespace StoryboardTable
 				+ year + "/month_" + monthstring + "/day_" + daystring + "/master_scoreboard.json";
 			Console.Out.WriteLine("url: " + apiurl);
 
-			string url = "http://gd2.mlb.com/components/game/mlb/year_2015/month_07/day_26/master_scoreboard.json"; // apiurl
-
-			// if scraping, not sure how much of this i need
-			var request = HttpWebRequest.Create(string.Format(@url));
+			// make the actual request for the data
+			var request = HttpWebRequest.Create(string.Format(@apiurl));
 			request.ContentType = "application/json";
 			request.Method = "GET";
 
@@ -78,8 +76,6 @@ namespace StoryboardTable
 					}
 					else 
 					{
-						//Console.Out.WriteLine("Response Body: \r\n {0}", content);
-
 						// call function to parse data using json.
 						// get the whole thing
 						JObject information = JObject.Parse (content);
@@ -105,59 +101,74 @@ namespace StoryboardTable
 							while(seqEnum.MoveNext())
 							{
 								JToken curr = seqEnum.Current;
-								//Console.Out.WriteLine ("curr: " + curr.ToString ());
 
-								// if there's a game today and it's currently not in progress. going to have to change for a game later in the day.
-								if(/*(curr["away_team_name"].ToString() == "Mariners" || curr["home_team_name"].ToString() == "Mariners")
-									&&*/ curr["due_up_batter"] == null)
+								// if there's a game today and it hasn't started yet
+								if(curr["home_probable_pitcher"] != null)
 								{
 									Console.Out.WriteLine ("Mariners game found: " + curr ["away_team_name"].ToString ());
 
-									// create an object to hold the winning pitcher
-									JToken winPitcher = curr ["winning_pitcher"];
-									pitch = winPitcher;
-
-									// hold the losing pitcher
-									JToken losePitcher = curr ["losing_pitcher"];
-									bat = losePitcher;
-
-									// hold linescore. currently withdraw hits but should definitely turn this into some kind of display
-									JToken linescore = curr ["linescore"];
-									JToken hits = linescore ["h"];
-									Console.Out.WriteLine ("hits: " + hits.ToString ());
+									pitch = curr["away_probable_pitcher"];
+									bat = curr["home_probable_pitcher"];
 
 									homeTeam = curr ["home_team_name"].ToString ();
 									awayTeam = curr ["away_team_name"].ToString ();
 
-									Game newGame = new Game () { pitcher = pitch, batter = bat, hometeam = homeTeam, awayteam = awayTeam };
+									Game newGame = new Game () 
+									{ 
+										pitcher = pitch, batter = bat,
+										hometeam = homeTeam, awayteam = awayTeam, 
+										homelosses = curr["home_loss"].ToString(), homewins = curr["home_win"].ToString(),
+										awaylosses = curr["away_loss"].ToString(), awaywins = curr["away_win"].ToString(),
+										starttime = curr["home_time"].ToString(), timezone = curr["home_time_zone"].ToString(),
+										status = "before",};
 									allGames.Add(newGame);
 								}
 
 								// found a current game
-								/*else if((curr["away_team_name"].ToString() != null || curr["home_team_name"].ToString() != null)
-									&& curr["due_up_batter"] != null)
+								else if(curr["due_up_batter"] != null)
 								{
-									Game newGame = new Game () { pitcher = curr["pitcher"], batter = curr["due_up_batter"], hometeam = curr["home_team_name"].ToString(), awayteam = curr["away_team_name"].ToString() };
+									JToken linescore = curr["linescore"];
+									Game newGame = new Game ()
+									{ 
+										pitcher = curr["pitcher"], batter = curr["due_up_batter"], 
+										hometeam = curr["home_team_name"].ToString(), awayteam = curr["away_team_name"].ToString(),
+										homelosses = curr["home_loss"].ToString(), homewins = curr["home_win"].ToString(),
+										awaylosses = curr["away_loss"].ToString(), awaywins = curr["away_win"].ToString(),
+										starttime = curr["home_time"].ToString(), timezone = curr["home_time_zone"].ToString(),
+										status = "during", score = linescore["r"],};
 									allGames.Add(newGame);
-
-
-									pitch = curr ["pitcher"];
-									bat = curr ["due_up_batter"];
-									homeTeam = curr ["home_team_name"].ToString ();
-									awayTeam = curr ["away_team_name"].ToString ();
-								}*/
+								}
+								// found a game that's over
+								else if(curr["winning_pitcher"] != null)
+								{
+									JToken linescore = curr["linescore"];
+									Game newGame = new Game () 
+									{ 
+										pitcher = curr["winning_pitcher"], batter = curr["losing_pitcher"], 
+										hometeam = curr["home_team_name"].ToString(), awayteam = curr["away_team_name"].ToString(),
+										homelosses = curr["home_loss"].ToString(), homewins = curr["home_win"].ToString(),
+										awaylosses = curr["away_loss"].ToString(), awaywins = curr["away_win"].ToString(),
+										starttime = curr["home_time"].ToString(), timezone = curr["home_time_zone"].ToString(),
+										status = "after", score = linescore["r"],};
+									allGames.Add(newGame);
+								}
+								else // should never happen, but just in case
+								{
+									Game newGame = new Game () 
+									{	
+										hometeam = curr["home_team_name"].ToString(), awayteam = curr["away_team_name"].ToString(),
+										homelosses = curr["home_loss"].ToString(), homewins = curr["home_win"].ToString(),
+										awaylosses = curr["away_loss"].ToString(), awaywins = curr["away_win"].ToString(),
+										starttime = curr["home_time"].ToString(), timezone = curr["home_time_zone"].ToString(),
+										status = "who the fuck knows",};
+									allGames.Add(newGame);
+								}
 							}
 						}
 					}
-
-					//Assert.NotNull(content);
 				}
 			}
-
 			#endregion
-
-			// Custom initialization
-
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)

@@ -16,6 +16,22 @@ namespace StoryboardTable
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel awayLabel0 { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel awayLabel1 { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel awayLabel2 { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel awayLabel3 { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView detail { get; set; }
 
 		[Outlet]
@@ -32,6 +48,22 @@ namespace StoryboardTable
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (awayLabel0 != null) {
+				awayLabel0.Dispose ();
+				awayLabel0 = null;
+			}
+			if (awayLabel1 != null) {
+				awayLabel1.Dispose ();
+				awayLabel1 = null;
+			}
+			if (awayLabel2 != null) {
+				awayLabel2.Dispose ();
+				awayLabel2 = null;
+			}
+			if (awayLabel3 != null) {
+				awayLabel3.Dispose ();
+				awayLabel3 = null;
+			}
 			if (detail != null) {
 				detail.Dispose ();
 				detail = null;

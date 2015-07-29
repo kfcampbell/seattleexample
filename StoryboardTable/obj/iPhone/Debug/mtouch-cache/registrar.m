@@ -627,6 +627,9 @@ void native_to_managed_trampoline_15 (id self, SEL _cmd, MonoMethod **managed_me
 @interface TaskDetailViewController : UITableViewController {
 	void *__monoObjectGCHandle;
 }
+	@property (nonatomic, assign) id awayLabel0;
+	@property (nonatomic, assign) id awayLabel1;
+	@property (nonatomic, assign) id awayLabel2;
 	@property (nonatomic, assign) id detail;
 	@property (nonatomic, assign) id homeLabel0;
 	@property (nonatomic, assign) id homeLabel1;
@@ -634,6 +637,12 @@ void native_to_managed_trampoline_15 (id self, SEL _cmd, MonoMethod **managed_me
 	-(void) release;
 	-(id) retain;
 	-(void) dealloc;
+	-(id) awayLabel0;
+	-(void) setAwayLabel0:(id)p0;
+	-(id) awayLabel1;
+	-(void) setAwayLabel1:(id)p0;
+	-(id) awayLabel2;
+	-(void) setAwayLabel2:(id)p0;
 	-(id) detail;
 	-(void) setDetail:(id)p0;
 	-(id) homeLabel0;
@@ -666,6 +675,42 @@ void native_to_managed_trampoline_15 (id self, SEL _cmd, MonoMethod **managed_me
 		xamarin_free_gchandle (self, gchandle);
 		mono_thread_detach_if_exiting ();
 		[super dealloc];
+	}
+
+	-(id) awayLabel0
+	{
+		static MonoMethod *managed_method = NULL;
+		return native_to_managed_trampoline_1 (self, _cmd, &managed_method, "StoryboardTable.TaskDetailViewController, StoryboardTable, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "get_awayLabel0");
+	}
+
+	-(void) setAwayLabel0:(id)p0
+	{
+		static MonoMethod *managed_method = NULL;
+		native_to_managed_trampoline_2 (self, _cmd, &managed_method, p0, "UIKit.UILabel, Xamarin.iOS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", "StoryboardTable.TaskDetailViewController, StoryboardTable, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "set_awayLabel0");
+	}
+
+	-(id) awayLabel1
+	{
+		static MonoMethod *managed_method = NULL;
+		return native_to_managed_trampoline_1 (self, _cmd, &managed_method, "StoryboardTable.TaskDetailViewController, StoryboardTable, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "get_awayLabel1");
+	}
+
+	-(void) setAwayLabel1:(id)p0
+	{
+		static MonoMethod *managed_method = NULL;
+		native_to_managed_trampoline_2 (self, _cmd, &managed_method, p0, "UIKit.UILabel, Xamarin.iOS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", "StoryboardTable.TaskDetailViewController, StoryboardTable, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "set_awayLabel1");
+	}
+
+	-(id) awayLabel2
+	{
+		static MonoMethod *managed_method = NULL;
+		return native_to_managed_trampoline_1 (self, _cmd, &managed_method, "StoryboardTable.TaskDetailViewController, StoryboardTable, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "get_awayLabel2");
+	}
+
+	-(void) setAwayLabel2:(id)p0
+	{
+		static MonoMethod *managed_method = NULL;
+		native_to_managed_trampoline_2 (self, _cmd, &managed_method, p0, "UIKit.UILabel, Xamarin.iOS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", "StoryboardTable.TaskDetailViewController, StoryboardTable, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "set_awayLabel2");
 	}
 
 	-(id) detail

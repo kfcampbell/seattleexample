@@ -22,11 +22,8 @@ namespace StoryboardTable
 			// in a Storyboard, Dequeue will ALWAYS return a cell,
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
 			// now set the properties as normal
-			cell.TextLabel.Text = tableItems[indexPath.Row].awayteam + " at " + tableItems[indexPath.Row].hometeam; // where the hometeam is set
-			/*if (tableItems[indexPath.Row].Done)
-				cell.Accessory = UITableViewCellAccessory.Checkmark;*/
-			//else
-				cell.Accessory = UITableViewCellAccessory.None;
+			cell.TextLabel.Text = tableItems[indexPath.Row].awayteam + " at " + tableItems[indexPath.Row].hometeam;
+			cell.Accessory = UITableViewCellAccessory.None; // this is where you'd set logos if that became a thing
 			return cell;
 		}
 		public Game GetItem(int id) {
